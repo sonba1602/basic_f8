@@ -1,0 +1,182 @@
+I. Kiến thức cơ bản
+	1. Một số hàm built-in JS hiển thị (hàm có sẵn)
+		- aleart("")
+		- console => .log, .error, .warning, ...
+		- confirm(""): Hiển thị 1 popup và hai nút cancel, OK
+		- prompt(""): Hiển thị 1 popup và hai nút cancel, OK và một ô nhập dữ liệu
+		- setTimeout(function(){ : thực thi đoạn code trong hàm 1 lần
+				//code
+			},1000)//tính bằng mili giây
+		- setInterval(function(){ : thực thi đoạn code trong hàm nhiều lần, sau 1 giây 1 lần
+				//code
+			},1000)//tính bằng mili giây
+	2. Toán tử ++ và --
+		Ví dụ với ++a và a++
+			` let a=5; let m=++a => m=6
+			` let a=5; let m=a++ => m=5
+>	3. Gán với toán tử logic và điều kiện if (giá trị được convert sang boolean trong câu lệnh if)
+		- JS quy định 6 giá trị này là false (tự convert thành false)
+			0, false, ''/"", undefined, NaN, null
+		- Ngoài 6 giá trị này thì nó tự convert thành true
+		- Toán tử &&
+			* từ trái qua phải nếu gặp giá trị thuộc 6 giá trị trên thì lấy, nếu không thì xét đến giá trị tiếp theo
+			let a = 'A' && 'B' && 'C' => a='C' 
+		- Toán tử ||
+			* từ trái qua phải nếu gặp giá trị không thuộc 6 giá trị trên thì lấy, nếu không thì xét đến giá trị tiếp theo
+			let a = 'A' || 'B' || 'C' => a='A' 
+	4. Các kiểu dữ liệu trong JS
+		- Kiểu dữ liệu nguyên thủy (Primitive Data)
+			Number, String, boolean, undefined, Null, Symbol
+		- Kiểu dữ liệu phức tạp (Complex Data)
+			Function, Object (Array và Object)
+		- Kiểm tra kiểu dữ liệu: console.log(typeof a)
+	5. Chuỗi
+		Cách ghép chuỗi mới ở ES6 (template string ES6)
+		let string = `chuoi 1: ${string1} ${string2}`
+	6. Mảng
+>		arr.join() = a.toString() nhưng trong join có thể truyền vào để thay dấu ngăn cách
+		let s = arr.pop() => arr=[1,2], s=3
+		push(): thêm 1 hoặc nhiều phần tử vào mảng vào trả về số phần tử của mảng sau khi đã thêm
+		let s = arr.shift(): => arr=[2,3], s=1
+		unshift(): thêm 1 hoặc nhiều phần tử mới vào đầu mảng
+>		splice(chỉ mục, số lượng phần tử muốn xóa, các phần tử muốn thêm mới vào phân tách bởi dấu phẩy)
+		arr1.concat(arr2) => arr1+=arr2
+		slice(vị trí bắt đầu, vị trí kết thúc): cắt 1 vài phần tử của mảng
+	7. Hàm
+		7.1 function writeLog() {
+				console.log(arguments) => in mảng các đối số truyền vào
+			}
+			đối tượng arguments 
+		7.2 function trùng tên thì f định nghĩa sau đè f định nghĩa trước
+		7.3 Định nghĩa hàm trong hàm: hàm chỉ nằm trong phạm vi sử dụng của hàm to hơn
+		7.4 Declaration function : Hàm khai báo
+			function show(){} 
+			- Phải đặt tên, bắt đầu bằng function
+>			- Có thể gọi trước khi được định nghĩa
+		7.5 Expression function : Hàm biểu hiện ? (Hàm thường không có tên, nhưng cũng có thể đặt tên)
+			var show = function(){} 
+			- hàm không có tên và gán cho 1 biến hoặc hàm callBack, hoặc hàm trong Object
+			Ví dụ 
+				setTimeout(function(){})
+>			- Không thể gọi trước khi được định nghĩa
+	8. 
+	9. Vòng lặp
+		- Các loại vòng lặp
+			for/while/do.while - lặp với điều kiện đúng
+			for in - lặp qua key
+			for of - lặp qua value
+		9.1 for với điều kiện đúng
+			for(let i=0;i<10;i++){
+				//code
+			}
+>		9.2 for in - lặp qua key của đối tượng
+			- Dùng cho cả array và object, string
+				let myInfo={
+					name: "Son Tran",
+					age: 26,
+					address: "123"
+				}
+				for (let key in myInfo){
+					console.log(key) //name,age,address
+					console.log(myInfo.key) //undefined,undefined,undefined
+					console.log(myInfo[key])//"Son Tran", 26, "123"
+				}
+				
+				let arr=["Mot","Hai","Ba","Bon"]
+				for (let key in arr){
+					console.log(key) //0,1,2,3
+					console.log(arr[key])//"Mot","Hai","Ba","Bon"
+				}
+			
+			//string tương tự arr
+		9.3 for of - lặp qua value 
+>			- Dùng cho mảng hoặc string
+				let arr=["Mot","Hai","Ba","Bon"]
+				for (let value of arr){
+					console.log(value) //"Mot","Hai","Ba","Bon"
+				}
+			- Nếu dùng cho Object
+				let myInfo={
+					name: "Son Tran",
+					age: 26,
+					address: "123"
+				}
+				for (let key of Object.keys(myInfo)){
+					console.log(key) //name,age,address
+					console.log(myInfo[key])//"Son Tran", 26, "123"
+				}
+				for (let value of Object.values(myInfo)){
+					console.log(value)//"Son Tran", 26, "123"
+				}
+		9.4 break và continue trong vòng lặp
+			break thoát hẳn vòng lặp
+			continue bỏ qua các trường hợp nhưng vẫn chạy tiếp vòng lặp
+		9.5 Vòng lặp lồng nhau (Nested loop)
+	10. Mảng nâng cao
+		let arr = ["Mot","Hai","Ba","Bon"]
+		arr.forEach(function(so){ //callBack function
+			console.log(so)//"Mot","Hai","Ba","Bon"
+		})
+		let isString = arr.every(function(so,index){ //tất cả đúng thì trả về true, không thì trả về false
+			return typeof so === string
+		})
+		let isString = arr.some(function(so,index){ //mot gia tri đúng thì trả về true, không thì trả về false
+			return typeof so === string
+		})
+		let so = arr.find(function(so,index){ //Tìm kiếm chỉ 1 phần tử
+			return so === "Hai"
+		})
+		let so = arr.filter(function(so,index){ //Tìm kiếm tất cả các phần tử thỏa mãn
+			return so === "Hai"
+		})
+		10.1 map() //Dùng khi muốn chỉnh sửa hay thay đổi element của arr
+			let arr = ["Mot","Hai","Ba","Bon"]
+			//hàm callback có thể đc định nghĩa ở ngoài
+			let soHandler = function(so,index){
+			
+			}
+			let arr_2 = arr.map(function(so,index) {//soHandler
+					return so + "abc"
+				})
+
+		* DOM CSS
+			let boxElement = document.querySelector('.box')
+			let style = boxElement.style
+			1. Muốn set style = js
+				Cách 1:
+					boxElement.style.width='100px'
+					boxElement.style.height='200px'
+					boxElement.style.backgroundColor='red'
+				Cách 2:
+					Objject.assign(boxElement.style,{
+						width:'100px',
+						height:'200px',
+						backgroundColor:'red'
+					})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
